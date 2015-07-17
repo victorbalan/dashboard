@@ -79,9 +79,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <span>Coders</span>
               </a>
 
-              <a data-route="contact" href="/contact">
+              <a data-route="fingerprints" href="/fingerprints">
                 <iron-icon icon="mail"></iron-icon>
-                <span>Contact</span>
+                <span>Fingerprints</span>
               </a>
           </paper-menu>
       </div>
@@ -91,10 +91,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-toolbar id="mainToolbar" >
           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
           <span class="flex"></span>
-
-          <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
 
           <!-- Application name -->
           <div class="middle paper-font-display2 app-name">Coduno Dashboard</div>
@@ -110,6 +106,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <section data-route="home">
               <paper-material elevation="1">
+                <chart-statistics></chart-statistics>
                 <h1 class="paper-font-body5">Here the statistics will be.</h1>
               </paper-material>
               <paper-material elevation="1">
@@ -128,22 +125,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section data-route="user-info">
-              <paper-material elevation="1">
-                <h2 class="paper-font-display2">
-                User:<span>{{params.name}}</span>
-                </h2>
-                <div>This is <span>{{params.name}}</span>'s section</div>
-              </paper-material>
+            <section data-route="fingerprints">
+                <paper-material elevation="1">
+                  <template is="dom-if" if="{{fingerprints}}">
+                    <fingerprints-page></fingerprints-page>
+                  </template>
+                </paper-material>
             </section>
 
-            <section data-route="contact">
+            <section data-route="login">
               <paper-material elevation="1">
-                <h2 class="paper-font-display2">Contact</h2>
-                <p>This is the contact section</p>
+                <login-page></login-page>
               </paper-material>
             </section>
-
           </iron-pages>
         </div>
       </paper-header-panel>
@@ -154,14 +148,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  text="Caching complete! This app will work offline.">
     </paper-toast>
 
-    <platinum-sw-register auto-register
+    <!-- <platinum-sw-register auto-register
                           clients-claim
                           skip-waiting
                           on-service-worker-installed="displayInstalledToast">
       <platinum-sw-cache default-cache-strategy="networkFirst"
                          precache-file="precache.json">
       </platinum-sw-cache>
-    </platinum-sw-register>
+    </platinum-sw-register> -->
 
   </template>
 
