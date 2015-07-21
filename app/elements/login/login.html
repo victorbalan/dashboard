@@ -29,7 +29,7 @@
       login: function(){
         this.$.ajaxRequest.method='POST';
         this.$.ajaxRequest.body = JSON.stringify({'company': "Catalysts"});
-        this.$.ajaxRequest.url='http://localhost:8080/api/company/login';
+        this.$.ajaxRequest.url='/api/company/login';
         this.$.ajaxRequest.generateRequest();
       },
       onLoginResponse: function(res, req){
@@ -38,7 +38,7 @@
           var company = response.company
           document.cookie = "companyId=" + company.id
           document.cookie = "companyName=" + company.name
-          page.redirect("/")
+          page.redirect("/home")
         }else{
           this.invalidLogin = true;
         }
