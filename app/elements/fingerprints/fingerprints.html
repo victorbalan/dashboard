@@ -40,7 +40,7 @@
         console.log(error.detail)
       },
       ready: function(){
-        this.requestUrl = "http://localhost:8080/api/fingerprint/company/" + getCookie("companyId");
+        this.requestUrl = "/api/fingerprint/company/" + getCookie("companyId");
       }
     });
   })();
