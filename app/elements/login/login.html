@@ -1,19 +1,24 @@
+<link rel="import" href="../../bower_components/paper-input/all-imports.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
 <dom-module id="login-page">
   <template>
     <h2 class="paper-font-display2">Login here</h2>
     <template is="dom-if" if="{{invalidLogin}}">
       <p>Invalid login</p>
     </template>
-    <button id="login" on-click="login" >Login</button>
-    <iron-ajax
-      id="ajaxRequest"
-      handle-as="json"
-      on-response="onLoginResponse"
-      on-error="onLoginError"
-      debounce-duration="1000"
-      with-credentials="true"
-      >
-    </iron-ajax>
+      <paper-input type="text" label="E-mail" value="{{companyEmail}}"></paper-input>
+      <paper-input type="password" label="Password" value="{{password}}"></paper-input>
+      <paper-button raised on-click="login">Login</paper-button>
+      <iron-ajax
+        id="ajaxRequest"
+        handle-as="json"
+        on-response="onLoginResponse"
+        on-error="onLoginError"
+        debounce-duration="1000"
+        with-credentials="true"
+        >
+      </iron-ajax>
   </template>
 </dom-module>
 <script>
@@ -21,6 +26,8 @@
     Polymer({
       is: 'login-page',
       properties:{
+        companyEmail: String,
+        password: String,
         invalidLogin:{
           type: Boolean,
           notify: true
@@ -28,16 +35,17 @@
       },
       login: function(){
         this.$.ajaxRequest.method='POST';
-        this.$.ajaxRequest.body = JSON.stringify({'company': "Catalysts"});
+        this.$.ajaxRequest.body = JSON.stringify({'email': this.companyEmail, 'password': this.password});
         this.$.ajaxRequest.url='/api/company/login';
         this.$.ajaxRequest.generateRequest();
       },
       onLoginResponse: function(res, req){
         var response = res.detail.response
         if(response != undefined){
+          console.log(response);
           var company = response.company
-          document.cookie = "companyId=" + company.id
-          document.cookie = "companyName=" + company.name
+          document.cookie = "companyId=" + company.id;
+          document.cookie = "companyName=" + company.name;
           page.redirect("/home")
         }else{
           this.invalidLogin = true;
