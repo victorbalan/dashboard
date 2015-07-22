@@ -5,32 +5,32 @@
     app.fingerprints = false;
 
     page('/home', function () {
-      routing()
+      routing();
       checkLoggedIn();
       app.route = 'home';
     });
 
     page('/coders', function () {
-      routing()
+      routing();
       checkLoggedIn();
       app.route = 'coders';
     });
 
     page('/coders/:id', function (data) {
-      routing()
+      routing();
       checkLoggedIn();
       app.route = 'coder-info';
       app.params = data.params;
     });
 
     page('/fingerprints', function () {
-      routing()
+      routing();
       checkLoggedIn();
       app.route = 'fingerprints';
     });
 
     page('/login', function(){
-      routing()
+      routing();
       app.route = 'login';
     })
 
