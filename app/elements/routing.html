@@ -29,10 +29,16 @@
       app.route = 'fingerprints';
     });
 
+    page('/candidate', function () {
+      routing();
+      checkLoggedIn();
+      app.route = 'candidate';
+    });
+
     page('/login', function(){
       routing();
       app.route = 'login';
-    })
+    });
 
     page({
       hashbang: true,
@@ -44,7 +50,7 @@
     }
 
     function checkLoggedIn(){
-      var sessionId = getCookie("SESSIONID")
+      var sessionId = readCookie("SESSIONID");
       if(sessionId=="" || sessionId==undefined){
         page.redirect("/login")
       }
