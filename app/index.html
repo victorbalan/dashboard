@@ -84,6 +84,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <iron-icon icon="mail"></iron-icon>
                 <span>Fingerprints</span>
               </a>
+
+            <a data-route="candidate" href="/candidate">
+              <iron-icon icon="perm-identity"></iron-icon>
+              <span>Invite candidate</span>
+            </a>
+
           </paper-menu>
       </div>
       <paper-header-panel main >
@@ -137,6 +143,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="login">
               <paper-material elevation="1">
                 <login-page></login-page>
+              </paper-material>
+            </section>
+
+            <section data-route="candidate">
+              <paper-material elevation="1">
+                <invite-candidate></invite-candidate>
               </paper-material>
             </section>
           </iron-pages>

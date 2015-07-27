@@ -3,7 +3,9 @@
     <h3>Fingerprints</h3>
     <ul>
       <template is="dom-repeat" items="{{items}}">
-        <li><span class="paper-font-body1"><p>{{item.id}}</p><p>{{item.challenge}}</p></span></li>
+        <li><p>{{item.id}}</p>
+            <p>{{item.challenge}}</p>
+        </li>
       </template>
     </ul>
     <iron-ajax
@@ -40,7 +42,8 @@
         console.log(error.detail)
       },
       ready: function(){
-        this.requestUrl = "/api/fingerprint/company/" + getCookie("companyId");
+        this.requestUrl = "/api/fingerprint/company/" + readCookie("companyId");
+        this.$.ajaxRequest.generateRequest();
       }
     });
   })();

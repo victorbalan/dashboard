@@ -42,8 +42,7 @@
       onLoginResponse: function(res, req){
         var response = res.detail.response
         if(response != undefined){
-          console.log(response);
-          var company = response.company
+          var company = response;
           document.cookie = "companyId=" + company.id;
           document.cookie = "companyName=" + company.name;
           page.redirect("/home")
